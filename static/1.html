@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>轮播图示例</title>
+    <!-- Swiper CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            /* display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4; */
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+        }
+        .swiper-container {
+            width: 100%;
+            height: 100%;
+        }
+        .swiper-slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Swiper Container -->
+    <div class="swiper-container">
+        <div class="swiper-wrapper">
+            <!-- Slides with online images -->
+            <div class="swiper-slide">
+                <img src="../pic/IWQoS.jpg" alt="Slide 4">
+            </div>
+            <div class="swiper-slide">
+                <img src="../pic/2024-1.jpg" alt="Slide 2">
+            </div>
+            <div class="swiper-slide">
+                <img src="../pic/2024-2.jpg" alt="Slide 3">
+            </div>
+            <div class="swiper-slide">
+                <img src="../pic/2022-1.jpg" alt="Slide 1">
+            </div>
+        </div>
+        <!-- Pagination -->
+        <div class="swiper-pagination"></div>
+        <!-- Navigation buttons -->
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+    </div>
+
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script>
+        // Initialize Swiper
+        var swiper = new Swiper('.swiper-container', {
+            loop: true, // Enable looping
+            pagination: {
+                el: '.swiper-pagination',
+                clickable: true, // Pagination is clickable
+            },
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
+            autoplay: {
+                delay: 3000, // Auto-slide delay in ms
+                disableOnInteraction: false, // Continue autoplay after interaction
+            },
+        });
+    </script>
+</body>
+</html>

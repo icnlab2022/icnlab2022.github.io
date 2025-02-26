@@ -1,0 +1,82 @@
+<div id="news-container" style="display: flex; flex-direction: column; align-items: center;">
+    <div id="news-list" style="width: 100%; max-width: 1000px;">
+        <!-- 新闻信息将通过 JavaScript 动态填充 -->
+    </div>
+    <div id="pagination" style="display: flex; justify-content: space-between; width: 100%; max-width: 1000px; margin-top: 20px;">
+        <span id="prev-btn" style="cursor: pointer; font-size: 35px; color: blue;" onclick="prevPage()" disabled>&#8592;</span> <!-- 单左箭头 -->
+        <span id="next-btn" style="cursor: pointer; font-size: 35px; color: blue;" onclick="nextPage()"> &#8594;</span> <!-- 单右箭头 -->
+    </div>
+</div>
+
+<script>
+    const newsData = [
+        { date: "<strong><em>&bull;</em></strong> 7 February 2025", content: "Our manuscript “Digital Twin-aided Edge Vehicle Task Offloading: an Adaptive PPO-based Approach” is accepted by the <strong><em>IEEE INFOCOM WKSHPS</em></strong> !" },
+        { date: "<strong><em>&bull;</em></strong> 20 November 2024", content: " Congratulations! Yun Xia received the <strong><em>National Scholarship Award (国家奖学金)</em></strong>, and the <strong><em>Outstanding Student</em></strong> of USST!" },
+        { date: "<strong><em>&bull;</em></strong> 23 October 2024", content: "Dr. Xue is awarded the <strong><em>Reviewer Excellence Certificate</em></strong> by Physical Communication!" },
+        { date: "<strong><em>&bull;</em></strong> 22 September 2024", content: "Dr. Xue is awarded the <strong><em>Reviewer Excellence Certificate</em></strong> by Computer Networks!" },
+        { date: "<strong><em>&bull;</em></strong> 10 June 2024", content: "Our manuscript “All-pay Auction Based Profit Maximization in End-to-End Computation Offloading System” is accepted by the <strong><em>IEEE Transactions on Vehicular Technology<strong><em>!" },
+        { date: "<strong><em>&bull;</em></strong> 30 April 2024", content: "Our manuscript “Profit-aware Edge Server Placement based on All-pay Auction for Edge Offloading” is accepted by the <strong><em>2024 IEEE/ACM 32nd International Symposium on Quality of Service (IWQoS)</em></strong>!" },
+        { date: "<strong><em>&bull;</em></strong> 2 September 2023", content: "Our manuscript “Parameter Estimation-Aided Edge Server Selection Mechanism for Edge Task Offloading” is accepted by the <strong><em>IEEE Transactions on Vehicular Technology</em></strong>!" },
+        // 此处可以继续添加更多新闻...
+    ];
+
+    let currentPage = 0;
+    const itemsPerPage = 3;
+
+    function renderNews() {
+        const start = currentPage * itemsPerPage;
+        const end = start + itemsPerPage;
+        const newsToShow = newsData.slice(start, end);
+        
+        const newsList = document.getElementById('news-list');
+        newsList.innerHTML = '';
+        newsToShow.forEach(news => {
+            const newsItem = document.createElement('p');
+            newsItem.style.fontSize = '15px';
+            newsItem.innerHTML = `${news.date}, ${news.content}`;
+            newsList.appendChild(newsItem);
+        });
+
+         // 处理上一页箭头
+        const prevBtn = document.getElementById('prev-btn');
+        if (currentPage === 0) {
+            prevBtn.style.color = 'black'; // 没有内容时为黑色
+            prevBtn.style.pointerEvents = 'none';
+        } else {
+            prevBtn.style.color = 'blue'; // 有内容时为蓝色
+            prevBtn.style.pointerEvents = 'auto';
+        }
+
+        // 处理下一页箭头
+        const nextBtn = document.getElementById('next-btn');
+        if (end >= newsData.length) {
+            nextBtn.style.color = 'black'; // 没有内容时为黑色
+            nextBtn.style.pointerEvents = 'none';
+        } else {
+            nextBtn.style.color = 'blue'; // 有内容时为蓝色
+            nextBtn.style.pointerEvents = 'auto';
+        }
+        
+        document.getElementById('prev-btn').style.opacity = currentPage === 0 ? 0.5 : 1;
+        document.getElementById('prev-btn').style.pointerEvents = currentPage === 0 ? 'none' : 'auto';
+        document.getElementById('next-btn').style.opacity = end >= newsData.length ? 0.5 : 1;
+        document.getElementById('next-btn').style.pointerEvents = end >= newsData.length ? 'none' : 'auto';
+    }
+
+    function prevPage() {
+        if (currentPage > 0) {
+            currentPage--;
+            renderNews();
+        }
+    }
+
+    function nextPage() {
+        if ((currentPage + 1) * itemsPerPage < newsData.length) {
+            currentPage++;
+            renderNews();
+        }
+    }
+
+    // 初始渲染
+    renderNews();
+</script>
