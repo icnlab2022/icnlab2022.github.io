@@ -52,7 +52,7 @@
                 <div class="collection-info">
                     <span class="meta-info">
                         <span class="octicon octicon-calendar"></span>
-                        <time datetime="2026-01-22T02:21:53.696Z" itemprop="datePublished">2026-01-22</time>
+                        <time datetime="2026-01-22T02:36:09.635Z" itemprop="datePublished">2026-01-22</time>
 
 (Updated Time)
                     </span>
@@ -67,10 +67,17 @@
         <div class="column  three-fourths " >
             <article class="article-content markdown-body">
                 <style>
-/* 添加这一小段CSS */
-ol, ul, p {
-    word-break: break-all;
+/* 符合英文音节规则的分词 */
+ol {
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -moz-hyphens: auto;
     text-align: justify;
+}
+
+/* 确保在英文环境下 */
+ol, li {
+    lang: "en";
 }
 </style>
 
